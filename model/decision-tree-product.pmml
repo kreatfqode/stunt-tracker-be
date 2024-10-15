@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PMML version="4.2" xmlns="http://www.dmg.org/PMML-4_2">
+  <Header copyright="oskhar">
+    <Application name="KNIME" version="4.7.2"/>
+  </Header>
+  <DataDictionary numberOfFields="23">
+    <DataField name="AIR (g)" optype="continuous" dataType="double">
+      <Interval closure="closedClosed" leftMargin="2.6" rightMargin="97.9"/>
+    </DataField>
+    <DataField name="ENERGI (Kal)" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="8.0" rightMargin="591.0"/>
+    </DataField>
+    <DataField name="PROTEIN (g)" optype="continuous" dataType="double">
+      <Interval closure="closedClosed" leftMargin="0.2" rightMargin="46.9"/>
+    </DataField>
+    <DataField name="LEMAK (g)" optype="continuous" dataType="double">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="44.2"/>
+    </DataField>
+    <DataField name="KH (g)" optype="continuous" dataType="double">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="85.29999999999998"/>
+    </DataField>
+    <DataField name="SERAT (g)" optype="continuous" dataType="double">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="46.5"/>
+    </DataField>
+    <DataField name="ABU (g)" optype="continuous" dataType="double">
+      <Interval closure="closedClosed" leftMargin="0.1" rightMargin="11.6"/>
+    </DataField>
+    <DataField name="KALSIUM (mg)" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="972.0"/>
+    </DataField>
+    <DataField name="FOSFOR (mg)" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="654.0"/>
+    </DataField>
+    <DataField name="BESI (mg)" optype="continuous" dataType="double">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="22.2"/>
+    </DataField>
+    <DataField name="NATRIUM (mg)" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="3064.0"/>
+    </DataField>
+    <DataField name="KALIUM (mg)" optype="continuous" dataType="double">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="1147.1"/>
+    </DataField>
+    <DataField name="TEMBAGA (mg)" optype="continuous" dataType="double">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="1044.2"/>
+    </DataField>
+    <DataField name="SENG (mg)" optype="continuous" dataType="double">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="5.5"/>
+    </DataField>
+    <DataField name="RETINOL (mcg)" optype="continuous" dataType="double">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="9152.0"/>
+    </DataField>
+    <DataField name="B-KAR (mcg)" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="18250.0"/>
+    </DataField>
+    <DataField name="KAR-TOTAL (mcg)" optype="continuous" dataType="double">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="28000.0"/>
+    </DataField>
+    <DataField name="THIAMIN (mg)" optype="continuous" dataType="double">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="1.13"/>
+    </DataField>
+    <DataField name="RIBOFLAVIN (mg)" optype="continuous" dataType="double">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="29.4"/>
+    </DataField>
+    <DataField name="NIASIN (mg)" optype="continuous" dataType="double">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="22.0"/>
+    </DataField>
+    <DataField name="VIT_C (mg)" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="193.0"/>
+    </DataField>
+    <DataField name="BDD (%)" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="25.0" rightMargin="100.0"/>
+    </DataField>
+    <DataField name="Rekomendasi Produk" optype="categorical" dataType="string">
+      <Value value="1"/>
+      <Value value="23"/>
+      <Value value="14"/>
+      <Value value="2"/>
+      <Value value="20"/>
+    </DataField>
+  </DataDictionary>
+  <TreeModel modelName="DecisionTree" functionName="classification" splitCharacteristic="binarySplit" missingValueStrategy="lastPrediction" noTrueChildStrategy="returnNullPrediction">
+    <MiningSchema>
+      <MiningField name="AIR (g)" invalidValueTreatment="asIs"/>
+      <MiningField name="ENERGI (Kal)" invalidValueTreatment="asIs"/>
+      <MiningField name="PROTEIN (g)" invalidValueTreatment="asIs"/>
+      <MiningField name="LEMAK (g)" invalidValueTreatment="asIs"/>
+      <MiningField name="KH (g)" invalidValueTreatment="asIs"/>
+      <MiningField name="SERAT (g)" invalidValueTreatment="asIs"/>
+      <MiningField name="ABU (g)" invalidValueTreatment="asIs"/>
+      <MiningField name="KALSIUM (mg)" invalidValueTreatment="asIs"/>
+      <MiningField name="FOSFOR (mg)" invalidValueTreatment="asIs"/>
+      <MiningField name="BESI (mg)" invalidValueTreatment="asIs"/>
+      <MiningField name="NATRIUM (mg)" invalidValueTreatment="asIs"/>
+      <MiningField name="KALIUM (mg)" invalidValueTreatment="asIs"/>
+      <MiningField name="TEMBAGA (mg)" invalidValueTreatment="asIs"/>
+      <MiningField name="SENG (mg)" invalidValueTreatment="asIs"/>
+      <MiningField name="RETINOL (mcg)" invalidValueTreatment="asIs"/>
+      <MiningField name="B-KAR (mcg)" invalidValueTreatment="asIs"/>
+      <MiningField name="KAR-TOTAL (mcg)" invalidValueTreatment="asIs"/>
+      <MiningField name="THIAMIN (mg)" invalidValueTreatment="asIs"/>
+      <MiningField name="RIBOFLAVIN (mg)" invalidValueTreatment="asIs"/>
+      <MiningField name="NIASIN (mg)" invalidValueTreatment="asIs"/>
+      <MiningField name="VIT_C (mg)" invalidValueTreatment="asIs"/>
+      <MiningField name="BDD (%)" invalidValueTreatment="asIs"/>
+      <MiningField name="Rekomendasi Produk" invalidValueTreatment="asIs" usageType="target"/>
+    </MiningSchema>
+    <Node id="0" score="23" recordCount="132.0">
+      <True/>
+      <ScoreDistribution value="1" recordCount="9.0"/>
+      <ScoreDistribution value="23" recordCount="62.0"/>
+      <ScoreDistribution value="14" recordCount="39.0"/>
+      <ScoreDistribution value="20" recordCount="20.0"/>
+      <ScoreDistribution value="2" recordCount="2.0"/>
+      <Node id="1" score="23" recordCount="82.0">
+        <SimplePredicate field="ENERGI (Kal)" operator="lessOrEqual" value="201.5"/>
+        <ScoreDistribution value="1" recordCount="0.0"/>
+        <ScoreDistribution value="23" recordCount="62.0"/>
+        <ScoreDistribution value="14" recordCount="0.0"/>
+        <ScoreDistribution value="20" recordCount="20.0"/>
+        <ScoreDistribution value="2" recordCount="0.0"/>
+        <Node id="2" score="23" recordCount="62.0">
+          <SimplePredicate field="LEMAK (g)" operator="lessOrEqual" value="2.0"/>
+          <ScoreDistribution value="1" recordCount="0.0"/>
+          <ScoreDistribution value="23" recordCount="62.0"/>
+          <ScoreDistribution value="14" recordCount="0.0"/>
+          <ScoreDistribution value="20" recordCount="0.0"/>
+          <ScoreDistribution value="2" recordCount="0.0"/>
+        </Node>
+        <Node id="3" score="20" recordCount="20.0">
+          <SimplePredicate field="LEMAK (g)" operator="greaterThan" value="2.0"/>
+          <ScoreDistribution value="1" recordCount="0.0"/>
+          <ScoreDistribution value="23" recordCount="0.0"/>
+          <ScoreDistribution value="14" recordCount="0.0"/>
+          <ScoreDistribution value="20" recordCount="20.0"/>
+          <ScoreDistribution value="2" recordCount="0.0"/>
+        </Node>
+      </Node>
+      <Node id="4" score="14" recordCount="50.0">
+        <SimplePredicate field="ENERGI (Kal)" operator="greaterThan" value="201.5"/>
+        <ScoreDistribution value="1" recordCount="9.0"/>
+        <ScoreDistribution value="23" recordCount="0.0"/>
+        <ScoreDistribution value="14" recordCount="39.0"/>
+        <ScoreDistribution value="20" recordCount="0.0"/>
+        <ScoreDistribution value="2" recordCount="2.0"/>
+        <Node id="5" score="14" recordCount="33.0">
+          <SimplePredicate field="PROTEIN (g)" operator="lessOrEqual" value="7.15"/>
+          <ScoreDistribution value="1" recordCount="0.0"/>
+          <ScoreDistribution value="23" recordCount="0.0"/>
+          <ScoreDistribution value="14" recordCount="33.0"/>
+          <ScoreDistribution value="20" recordCount="0.0"/>
+          <ScoreDistribution value="2" recordCount="0.0"/>
+        </Node>
+        <Node id="6" score="1" recordCount="17.0">
+          <SimplePredicate field="PROTEIN (g)" operator="greaterThan" value="7.15"/>
+          <ScoreDistribution value="1" recordCount="9.0"/>
+          <ScoreDistribution value="23" recordCount="0.0"/>
+          <ScoreDistribution value="14" recordCount="6.0"/>
+          <ScoreDistribution value="20" recordCount="0.0"/>
+          <ScoreDistribution value="2" recordCount="2.0"/>
+          <Node id="7" score="14" recordCount="8.0">
+            <SimplePredicate field="KH (g)" operator="lessOrEqual" value="69.55"/>
+            <ScoreDistribution value="1" recordCount="0.0"/>
+            <ScoreDistribution value="23" recordCount="0.0"/>
+            <ScoreDistribution value="14" recordCount="6.0"/>
+            <ScoreDistribution value="20" recordCount="0.0"/>
+            <ScoreDistribution value="2" recordCount="2.0"/>
+            <Node id="8" score="14" recordCount="6.0">
+              <SimplePredicate field="FOSFOR (mg)" operator="lessOrEqual" value="383.0"/>
+              <ScoreDistribution value="1" recordCount="0.0"/>
+              <ScoreDistribution value="23" recordCount="0.0"/>
+              <ScoreDistribution value="14" recordCount="6.0"/>
+              <ScoreDistribution value="20" recordCount="0.0"/>
+              <ScoreDistribution value="2" recordCount="0.0"/>
+            </Node>
+            <Node id="9" score="2" recordCount="2.0">
+              <SimplePredicate field="FOSFOR (mg)" operator="greaterThan" value="383.0"/>
+              <ScoreDistribution value="1" recordCount="0.0"/>
+              <ScoreDistribution value="23" recordCount="0.0"/>
+              <ScoreDistribution value="14" recordCount="0.0"/>
+              <ScoreDistribution value="20" recordCount="0.0"/>
+              <ScoreDistribution value="2" recordCount="2.0"/>
+            </Node>
+          </Node>
+          <Node id="10" score="1" recordCount="9.0">
+            <SimplePredicate field="KH (g)" operator="greaterThan" value="69.55"/>
+            <ScoreDistribution value="1" recordCount="9.0"/>
+            <ScoreDistribution value="23" recordCount="0.0"/>
+            <ScoreDistribution value="14" recordCount="0.0"/>
+            <ScoreDistribution value="20" recordCount="0.0"/>
+            <ScoreDistribution value="2" recordCount="0.0"/>
+          </Node>
+        </Node>
+      </Node>
+    </Node>
+  </TreeModel>
+</PMML>
