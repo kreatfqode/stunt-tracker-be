@@ -1,7 +1,11 @@
 from flask import Flask, jsonify, request
 from flask_sqlalchemy import SQLAlchemy
+from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
+
+# Configure CORS to allow specific origin
+cors = CORS(app, resources={r"/*": {"origins": "http://localhost:5173"}})
 
 # Konfigurasi koneksi ke database
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:tesdoang@localhost/decision_ml'
@@ -14,12 +18,39 @@ class Product(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     check_up_result_id = db.Column(db.Integer, nullable=False)
     name = db.Column(db.String(255), nullable=False)
-    # Kolom lainnya...
+    energi_kcal = db.Column(db.Float, nullable=False)
+    protein_g = db.Column(db.Float, nullable=False)
+    kalsium_mg = db.Column(db.Float, nullable=False)
+    zat_besi_mg = db.Column(db.Float, nullable=False)
+    gula_g = db.Column(db.Float, nullable=False)
+    lemak_g = db.Column(db.Float, nullable=False)
+    vitamin_a_ug = db.Column(db.Float, nullable=False)
+    vitamin_d_ug = db.Column(db.Float, nullable=False)
+    vitamin_c_mg = db.Column(db.Float, nullable=False)
+    zinc_mg = db.Column(db.Float, nullable=False)
+    omega_3_mg = db.Column(db.Float, nullable=False)
+    omega_6_mg = db.Column(db.Float, nullable=False)
+    folate_ug = db.Column(db.Float, nullable=False)
+    magnesium_mg = db.Column(db.Float, nullable=False)
 
     def to_dict(self):
         return {
             "id": self.id,
             "name": self.name,
+            "energi_kcal": self.energi_kcal,
+            "protein_g": self.protein_g,
+            "kalsium_mg": self.kalsium_mg,
+            "zat_besi_mg": self.zat_besi_mg,
+            "gula_g": self.gula_g,
+            "lemak_g": self.lemak_g,
+            "vitamin_a_ug": self.vitamin_a_ug,
+            "vitamin_d_ug": self.vitamin_d_ug,
+            "vitamin_c_mg": self.vitamin_c_mg,
+            "zinc_mg": self.zinc_mg,
+            "omega_3_mg": self.omega_3_mg,
+            "omega_6_mg": self.omega_6_mg,
+            "folate_ug": self.folate_ug,
+            "magnesium_mg": self.magnesium_mg,
         }
 
 class CheckUpResult(db.Model):
@@ -98,7 +129,7 @@ def get_check_up_weight(berat_badan, zscore_berat):
     elif berat_badan > zscore_berat.sangat_kurus:
         return "Underweight"
     else:
-        return "Severely Underweight"
+        return "Underweight"
 
 # Fungsi untuk menentukan status berdasarkan zscore tinggi
 def get_check_up_height(tinggi_badan, zscore_tinggi):
@@ -117,7 +148,7 @@ def get_check_up_height(tinggi_badan, zscore_tinggi):
     elif tinggi_badan > zscore_tinggi.sangat_pendek:
         return "Underheight"
     else:
-        return "Severely Underheight"
+        return "Underheight"
 
 # Fungsi untuk menentukan status berdasarkan zscore lingkar kepala
 def get_check_up_head_circumference(lingkar_kepala, zscore_lingkar_kepala):
@@ -136,17 +167,18 @@ def get_check_up_head_circumference(lingkar_kepala, zscore_lingkar_kepala):
     elif lingkar_kepala > zscore_lingkar_kepala.sangat_kecil:
         return "Undersize"
     else:
-        return "Severely Undersize"
+        return "Undersize"
 
 # Endpoint untuk menerima data berat badan, tinggi badan, lingkar kepala, dan umur
 @app.route("/check-up", methods=["POST"])
+@cross_origin()
 def check_up():
     data = request.get_json()
 
-    berat_badan = data.get('berat_badan')
-    tinggi_badan = data.get('tinggi_badan')
-    lingkar_kepala = data.get('lingkar_kepala')
-    umur_bulan = data.get('umur_bulan')
+    berat_badan = int(data.get('berat_badan'))
+    tinggi_badan = int(data.get('tinggi_badan'))
+    lingkar_kepala = int(data.get('lingkar_kepala'))
+    umur_bulan = int(data.get('umur_bulan'))
     jenis_kelamin = data.get('jenis_kelamin')
 
     if not (berat_badan and tinggi_badan and lingkar_kepala and umur_bulan and jenis_kelamin):
@@ -172,6 +204,14 @@ def check_up():
         return jsonify({"error": "No recommendation found"}), 404
 
     return jsonify(result.to_dict()), 200
+
+@app.route("/check-up/<int:check_up_result_id>/product", methods=["GET"])
+@cross_origin()
+def check_up_product(check_up_result_id):
+    result = Product.query.filter_by(check_up_result_id=check_up_result_id).all()
+    result_list = [r.to_dict() for r in result]
+
+    return jsonify(result_list), 200
 
 if __name__ == "__main__":
     app.run(debug=True)
