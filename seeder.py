@@ -1,22 +1,6 @@
 import pymysql
 from pypmml import Model
-
-
-def create_connection():
-    try:
-        connection = pymysql.connect(
-            host='localhost',
-            database='decision_ml',  
-            user='root',  
-            password='tesdoang'  
-        )
-        if connection.open:
-            print("Berhasil terhubung ke database")
-            return connection
-    except pymysql.MySQLError as e:
-        print(f"Error: {e}")
-        return None
-
+from db_connection import connection
 
 def insert_product_data(connection, product_data, check_up_result_id):
     try:
@@ -24,16 +8,16 @@ def insert_product_data(connection, product_data, check_up_result_id):
 
         insert_query = """
         INSERT INTO products (
-            check_up_result_id, name, energi_kcal, protein_g, kalsium_mg, zat_besi_mg, gula_g, lemak_g, vitamin_a_ug, vitamin_d_ug, vitamin_c_mg, zinc_mg, omega_3_mg, omega_6_mg, folate_ug, magnesium_mg
-        ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s) 
+            check_up_result_id, name, harga, energi_kcal, protein_g, kalsium_mg, zat_besi_mg, gula_g, lemak_g, vitamin_a_ug, vitamin_d_ug, vitamin_c_mg, zinc_mg, omega_3_mg, omega_6_mg, folate_ug, magnesium_mg
+        ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s) 
         """
 
         
         data_tuple = (
-            check_up_result_id, product_data[0], product_data[1], product_data[2], product_data[3], product_data[4], product_data[5], product_data[6], product_data[7], product_data[8], product_data[9], product_data[10], product_data[11], product_data[12], product_data[13], product_data[14]
+            check_up_result_id, product_data[0], product_data[1], product_data[2], product_data[3], product_data[4], product_data[5], product_data[6], product_data[7], product_data[8], product_data[9], product_data[10], product_data[11], product_data[12], product_data[13], product_data[14], product_data[15]
         )
         print(
-            check_up_result_id, product_data[0], product_data[1], product_data[2], product_data[3], product_data[4], product_data[5], product_data[6], product_data[7], product_data[8], product_data[9], product_data[10], product_data[11], product_data[12], product_data[13], product_data[14]
+            check_up_result_id, product_data[0], product_data[1], product_data[2], product_data[3], product_data[4], product_data[5], product_data[6], product_data[7], product_data[8], product_data[9], product_data[10], product_data[11], product_data[12], product_data[13], product_data[14], product_data[15]
             )
 
         cursor.execute(insert_query, data_tuple)
@@ -47,36 +31,36 @@ def insert_product_data(connection, product_data, check_up_result_id):
 
 def predict_check_up_result(ml_model, product_data):
     print({
-        "energi_kcal": float(product_data[1]),
-        "protein_g": float(product_data[2]),
-        "kalsium_mg": float(product_data[3]),
-        "zat_besi_mg": float(product_data[4]),
-        "gula_g": float(product_data[5]),
-        "lemak_g": float(product_data[6]),
-        "vitamin_a_ug": float(product_data[7]),
-        "vitamin_d_ug": float(product_data[8]),
-        "vitamin_c_mg": float(product_data[9]),
-        "zinc_mg": float(product_data[10]),
-        "omega_3_mg": float(product_data[11]),
-        "omega_6_mg": float(product_data[12]),
-        "folate_ug": float(product_data[13]),
-        "magnesium_mg": float(product_data[14]),
+        "energi_kcal": float(product_data[2]),
+        "protein_g": float(product_data[3]),
+        "kalsium_mg": float(product_data[4]),
+        "zat_besi_mg": float(product_data[5]),
+        "gula_g": float(product_data[6]),
+        "lemak_g": float(product_data[7]),
+        "vitamin_a_ug": float(product_data[8]),
+        "vitamin_d_ug": float(product_data[9]),
+        "vitamin_c_mg": float(product_data[10]),
+        "zinc_mg": float(product_data[11]),
+        "omega_3_mg": float(product_data[12]),
+        "omega_6_mg": float(product_data[13]),
+        "folate_ug": float(product_data[14]),
+        "magnesium_mg": float(product_data[15]),
         })
     prediction = ml_model.predict({
-        "energi_kcal": float(product_data[1]),
-        "protein_g": float(product_data[2]),
-        "kalsium_mg": float(product_data[3]),
-        "zat_besi_mg": float(product_data[4]),
-        "gula_g": float(product_data[5]),
-        "lemak_g": float(product_data[6]),
-        "vitamin_a_ug": float(product_data[7]),
-        "vitamin_d_ug": float(product_data[8]),
-        "vitamin_c_mg": float(product_data[9]),
-        "zinc_mg": float(product_data[10]),
-        "omega_3_mg": float(product_data[11]),
-        "omega_6_mg": float(product_data[12]),
-        "folate_ug": float(product_data[13]),
-        "magnesium_mg": float(product_data[14]),
+        "energi_kcal": float(product_data[2]),
+        "protein_g": float(product_data[3]),
+        "kalsium_mg": float(product_data[4]),
+        "zat_besi_mg": float(product_data[5]),
+        "gula_g": float(product_data[6]),
+        "lemak_g": float(product_data[7]),
+        "vitamin_a_ug": float(product_data[8]),
+        "vitamin_d_ug": float(product_data[9]),
+        "vitamin_c_mg": float(product_data[10]),
+        "zinc_mg": float(product_data[11]),
+        "omega_3_mg": float(product_data[12]),
+        "omega_6_mg": float(product_data[13]),
+        "folate_ug": float(product_data[14]),
+        "magnesium_mg": float(product_data[15]),
         }) 
     print(prediction) 
     print(prediction.get('predicted_scenario')) 
@@ -1285,20 +1269,12 @@ def main():
     ]
 
     
-    ml = Model.load('model/decision-tree-product.pmml')  
-
-    connection = create_connection()
-    if connection is None:
-        return
+    ml = Model.load('model/decision-tree-product.pmml')
 
     for product in data:
         check_up_result_id = predict_check_up_result(ml, product)
         print(check_up_result_id)
         insert_product_data(connection, product, check_up_result_id)
-
-    if connection.is_connected():
-        connection.close()
-        print("Koneksi database ditutup")
 
 if __name__ == "__main__":
     main()
